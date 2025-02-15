@@ -438,10 +438,6 @@
             </header>
             <!-- END HEADER DESKTOP-->
 
-
-
-
-
             <!-- MAIN CONTENT-->
             <div class="main-content">
                 <div class="section__content section__content--p30">
@@ -1102,7 +1098,6 @@
                                 <!-- END DATA TABLE-->
                             </div>
                         </div>
-                        
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="copyright">
