@@ -1,5 +1,5 @@
 <?php
-include 'admin_header.php';
+include 'doctor_header.php';
 ?>
 
             <!-- MAIN CONTENT-->
@@ -72,8 +72,8 @@ if(isset($_GET['cancel_id'])){
                                             </tr>
                                         </thead>
                                         <?php
-                                        
-                                        $sql = "SELECT * FROM `patient` p , `appointments` a , `doctors` d where a.doctor_id = d.doctor_id and a.patient_id = p.patient_id ";
+                                        $doctor_id = $_SESSION['doctor_id'];
+                                        $sql = "SELECT * FROM `patient` p , `appointments` a , `doctors` d where a.doctor_id = d.doctor_id and a.patient_id = p.patient_id and a.doctor_id = $doctor_id and a.status = 'accepted'";
                                         $query = mysqli_query($conn,$sql);
                                         if(mysqli_num_rows($query)){
 
@@ -88,7 +88,7 @@ if(isset($_GET['cancel_id'])){
                                                 <td><?php echo $row['status'];  ?></td>
 
                                                 <td>
-                                                    <a href="appointment.php?accept_id=<?php echo $row['appointment_id']; ?>" class="btn btn-outline-primary"> Accept </a>
+                                                    <a href="view.php?appoint_id=<?php echo $row['appointment_id']; ?>&patiant_id=<?php echo $row['patient_id']; ?>" class="btn btn-outline-primary"> View </a>
                                                     <a href="appointment.php?cancel_id=<?php echo $row['appointment_id']; ?>" class="btn btn-outline-danger"> Cancel </a>
                                                 </td>
                                                 
@@ -97,6 +97,16 @@ if(isset($_GET['cancel_id'])){
 
                                        }
 
+                                       }else{
+                                        ?>
+
+                                      <div class="alert alert-primary" role="alert">
+
+                                      Sorry Doctor You Dont Have Appointment for this Time !!
+
+										</div>
+
+                                        <?php
                                        }
                                       ?>
                                         </tbody>
@@ -107,5 +117,5 @@ if(isset($_GET['cancel_id'])){
                         </div>
                     
 <?php  
- include 'footer_admin.php';
+ include 'footer_doctor.php';
  ?>
