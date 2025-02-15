@@ -8,8 +8,8 @@ session_start();
 
 // 2. Unset all the session variables
 unset( $_SESSION['username'] );
-unset( $_SESSION['patient_name'] );
-unset( $_SESSION['patient_id'] );
+unset( $_SESSION['id'] );
+unset( $_SESSION['role'] );
 
 // 4. Destroy the session
 // session_destroy();
