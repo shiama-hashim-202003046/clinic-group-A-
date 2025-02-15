@@ -1,7 +1,3 @@
-<?php
-include '../connection.php';
-
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,7 +10,7 @@ include '../connection.php';
     <meta name="keywords" content="au theme template">
 
     <!-- Title Page-->
-    <title>Login</title>
+    <title>Register</title>
 
     <!-- Fontfaces CSS-->
     <link href="css/font-face.css" rel="stylesheet" media="all">
@@ -43,40 +39,6 @@ include '../connection.php';
     <div class="page-wrapper">
         <div class="page-content--bge5">
             <div class="container">
-              
-<?php
-
-if(isset($_POST['login'])){
-
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-    
-
-    $query_check = "SELECT * FROM `users` WHERE `username` = '$username' and `passwored_hash` = '$password'";
-    $result = mysqli_query($conn,$query_check);
-    if(mysqli_num_rows($result)){
-        $row = mysqli_fetch_assoc($result);
-
-        $_SESSION['id'] = $row['id'];
-        $_SESSION['username'] = $row['username'];
-        $_SESSION['role'] = $row['role'];
-
-
-        // header('location:index.php');
-
-        echo "<script>window.location.href='home.php'</script>";
-
-
-    }else{
-
-        echo "<script>alert('Wrong User Name or Password !!  ')</script>";
-
-
-    }
-}
-
-?>
-  
                 <div class="login-wrap">
                     <div class="login-content">
                         <div class="login-logo">
@@ -85,20 +47,38 @@ if(isset($_POST['login'])){
                             </a>
                         </div>
                         <div class="login-form">
-                            <form action="index.php" method="POST">
+                            <form action="" method="post">
                                 <div class="form-group">
-                                    <label>User Name</label>
-                                    <input class="au-input au-input--full" type="text" require name="username" placeholder="User Name">
+                                    <label>Username</label>
+                                    <input class="au-input au-input--full" type="text" name="username" placeholder="Username">
+                                </div>
+                                <div class="form-group">
+                                    <label>Email Address</label>
+                                    <input class="au-input au-input--full" type="email" name="email" placeholder="Email">
                                 </div>
                                 <div class="form-group">
                                     <label>Password</label>
-                                    <input class="au-input au-input--full" type="password" require name="password" placeholder="****">
+                                    <input class="au-input au-input--full" type="password" name="password" placeholder="Password">
                                 </div>
-
-                                <button class="au-btn au-btn--block au-btn--green m-b-20" name="login" type="submit">Login</button>
-                                
+                                <div class="login-checkbox">
+                                    <label>
+                                        <input type="checkbox" name="aggree">Agree the terms and policy
+                                    </label>
+                                </div>
+                                <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit">register</button>
+                                <div class="social-login-content">
+                                    <div class="social-button">
+                                        <button class="au-btn au-btn--block au-btn--blue m-b-20">register with facebook</button>
+                                        <button class="au-btn au-btn--block au-btn--blue2">register with twitter</button>
+                                    </div>
+                                </div>
                             </form>
-
+                            <div class="register-link">
+                                <p>
+                                    Already have account?
+                                    <a href="#">Sign In</a>
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
