@@ -7,9 +7,9 @@
 session_start();
 
 // 2. Unset all the session variables
+unset( $_SESSION['doctor_id'] );
+unset( $_SESSION['name'] );
 unset( $_SESSION['username'] );
-unset( $_SESSION['id'] );
-unset( $_SESSION['role'] );
 
 // 4. Destroy the session
 // session_destroy();

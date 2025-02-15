@@ -52,19 +52,19 @@ if(isset($_POST['login'])){
     $password = $_POST['password'];
     
 
-    $query_check = "SELECT * FROM `users` WHERE `username` = '$username' and `passwored_hash` = '$password'";
+    $query_check = "SELECT * FROM `doctors` WHERE `username` = '$username' and `password` = '$password'";
     $result = mysqli_query($conn,$query_check);
     if(mysqli_num_rows($result)){
         $row = mysqli_fetch_assoc($result);
 
-        $_SESSION['id'] = $row['id'];
+        $_SESSION['doctor_id'] = $row['doctor_id'];
+        $_SESSION['name'] = $row['name'];
         $_SESSION['username'] = $row['username'];
-        $_SESSION['role'] = $row['role'];
 
 
         // header('location:index.php');
 
-        echo "<script>window.location.href='home.php'</script>";
+        echo "<script>window.location.href='appointment.php'</script>";
 
 
     }else{
