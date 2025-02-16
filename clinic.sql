@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 15, 2025 at 06:37 PM
+-- Generation Time: Feb 16, 2025 at 02:43 AM
 -- Server version: 10.4.32-MariaDB
--- PHP Version: 8.0.30
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,6 +20,31 @@ SET time_zone = "+00:00";
 --
 -- Database: `clinic`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `appointments`
+--
+
+CREATE TABLE `appointments` (
+  `appointment_id` int(11) NOT NULL,
+  `doctor_id` int(11) NOT NULL,
+  `patient_id` int(11) NOT NULL,
+  `appointment_date` datetime NOT NULL,
+  `status` enum('pending','accepted','completed','canceled') NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `appointments`
+--
+
+INSERT INTO `appointments` (`appointment_id`, `doctor_id`, `patient_id`, `appointment_date`, `status`) VALUES
+(2, 1, 1, '2025-02-15 14:01:00', 'completed'),
+(3, 3, 2, '2025-02-17 00:00:00', 'completed'),
+(4, 3, 3, '2025-02-15 11:43:00', 'canceled'),
+(5, 3, 4, '2025-02-28 09:53:00', 'completed'),
+(6, 4, 5, '2025-02-15 08:42:00', 'accepted');
 
 -- --------------------------------------------------------
 
@@ -53,6 +78,14 @@ INSERT INTO `patient` (`patient_id`, `patient_name`, `patient_age`, `gender`, `p
 --
 
 --
+-- Indexes for table `appointments`
+--
+ALTER TABLE `appointments`
+  ADD PRIMARY KEY (`appointment_id`),
+  ADD KEY `patient` (`patient_id`),
+  ADD KEY `doctor` (`doctor_id`);
+
+--
 -- Indexes for table `patient`
 --
 ALTER TABLE `patient`
@@ -63,10 +96,26 @@ ALTER TABLE `patient`
 --
 
 --
+-- AUTO_INCREMENT for table `appointments`
+--
+ALTER TABLE `appointments`
+  MODIFY `appointment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
 -- AUTO_INCREMENT for table `patient`
 --
 ALTER TABLE `patient`
   MODIFY `patient_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `appointments`
+--
+ALTER TABLE `appointments`
+  ADD CONSTRAINT `appointments_ibfk_1` FOREIGN KEY (`patient_id`) REFERENCES `patient` (`patient_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
