@@ -1,3 +1,3 @@
 # clinic-group-A-
-dabase name=
-username=
+dabase name= clinic 
+username= root 
